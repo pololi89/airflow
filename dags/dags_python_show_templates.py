@@ -1,12 +1,13 @@
+from airflow import DAG
 import pendulum
-from airflow.models.dag import DAG
+import datetime
 from airflow.decorators import task
 
 with DAG(
     dag_id="dags_python_show_templates",
     schedule="30 9 * * *",
     start_date=pendulum.datetime(2025, 3, 15, tz="Asia/Seoul"),
-    catchup=True,
+    catchup=True
 ) as dag:
     
     @task(task_id='python_task')
