@@ -4,7 +4,7 @@ import pendulum
 from airflow.operators.python import PythonOperator
 
 with DAG(
-    dag_id='dags_python_with_postgres',
+    dag_id='dags_python_with_postgres_hook',
     start_date=pendulum.datetime(2025,4,1,tz='Asia/Seoul'),
     schedule=None,
     catchup=False
