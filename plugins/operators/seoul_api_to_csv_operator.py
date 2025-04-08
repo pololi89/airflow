@@ -1,6 +1,8 @@
 from airflow.models.baseoperator import BaseOperator
 from airflow.hooks.base import BaseHook
 import pandas as pd
+from airflow.models import Variable
+
 
 class SeoulApiToCsvOperator(BaseOperator):
     template_fields = ('endpoint', 'path', 'file_name', 'base_dt')
@@ -10,7 +12,9 @@ class SeoulApiToCsvOperator(BaseOperator):
         self.http_conn_id = 'openapi.seoul.go.kr'
         self.path = path
         self.file_name = file_name
-        self.endpoint = '{{var.value.apikey_openapi_seoul_go_kr}}/json/' + dataset_nm
+        api_key = Variable.get("apikey_openapi_seoul_go_kr")  # 실제 값 불러오기
+        self.endpoint = f"http://openapi.seoul.go.kr:8088/{api_key}/json/{dataset_nm}"
+        # self.endpoint = '{{var.value.apikey_openapi_seoul_go_kr}}/json/' + dataset_nm
         self.base_dt = base_dt
         
     def execute(self, context):
