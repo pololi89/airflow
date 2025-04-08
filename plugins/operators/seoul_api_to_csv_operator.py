@@ -12,9 +12,9 @@ class SeoulApiToCsvOperator(BaseOperator):
         self.http_conn_id = 'openapi.seoul.go.kr'
         self.path = path
         self.file_name = file_name
-        api_key = Variable.get("apikey_openapi_seoul_go_kr")  # 실제 값 불러오기
-        self.endpoint = f"http://openapi.seoul.go.kr:8088/{api_key}/json/{dataset_nm}"
-        # self.endpoint = '{{var.value.apikey_openapi_seoul_go_kr}}/json/' + dataset_nm
+        # api_key = Variable.get("apikey_openapi_seoul_go_kr")  # 실제 값 불러오기
+        # self.endpoint = f"http://openapi.seoul.go.kr:8088/{api_key}/json/{dataset_nm}"
+        self.endpoint = '{{var.value.apikey_openapi_seoul_go_kr}}/json/' + dataset_nm
         self.base_dt = base_dt
         
     def execute(self, context):
