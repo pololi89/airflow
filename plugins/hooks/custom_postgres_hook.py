@@ -40,7 +40,7 @@ class CustomPostgresHook(BaseHook):
         uri = f'postgresql://{self.user}:{self.password}@{self.host}/{self.dbname}'
         engine = create_engine(uri)
         file_df.to_sql(name=table_name,
-                            con=engint,
+                            con=engine,
                             schema='public',
                             if_exists=if_exists,
                             index=False
