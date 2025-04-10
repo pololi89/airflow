@@ -17,11 +17,11 @@ with DAG(
     )
     
     '''서울시 코로나19 백신 예방접종 현황'''
-    tv_corona19_vaccine_start_new = SeoulApiToCsvOperator(
-        task_id='tv_corona19_vaccine_start_new',
+    tv_corona19_vaccine_stat_new = SeoulApiToCsvOperator(
+        task_id='tv_corona19_vaccine_stat_new',
         dataset_nm='TvCorona19VaccinestatNew',
         path='/opt/airflow/files/TvCorona19VaccinestatNew/{{execution_date.in_timezone("Asia/Seoul") | ds_nodash }}',
         file_name='tvCorona19VaccinestatNew.csv'
     )
     
-    tb_corona19_count_status >> tv_corona19_vaccine_start_new
+    tb_corona19_count_status >> tv_corona19_vaccine_stat_new
